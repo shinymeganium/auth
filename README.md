@@ -243,11 +243,11 @@ Admin users only.
 
 Response:
 
-````json
+```json
 {
   "message": "Welcome admin"
 }
-
+```
 
 
 
@@ -275,7 +275,7 @@ Users have a role property:
   email: "user@test.com",
   role: "user"
 }
-
+```
 
 or
 
@@ -284,6 +284,7 @@ or
   email: "admin@test.com",
   role: "admin"
 }
+```
 
 
 The JWT stores the user's role.
@@ -292,6 +293,7 @@ Protected admin routes use authorization middleware to verify:
 
 ```javascript
 req.user.role === "admin"
+```
 
 
 Only admins are allowed access.
