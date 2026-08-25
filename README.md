@@ -6,7 +6,6 @@ This project is a full-stack authentication application built with React and Exp
 
 The application also includes role-based authorization with a separate admin view that can only be accessed by users with the admin role.
 
-
 ## Features
 
 ### Authentication
@@ -40,11 +39,11 @@ The application also includes role-based authorization with a separate admin vie
 - CORS
 - dotenv
 
-
 ## Project Structure
 
 ### Frontend
 
+```text
 frontend/
 ├── src/
 │   ├── components/
@@ -52,66 +51,75 @@ frontend/
 │   │   ├── RegisterForm.jsx
 │   │   ├── UserView.jsx
 │   │   └── AdminView.jsx
-│   │
 │   ├── routes/
 │   │   ├── ProtectedRoute.jsx
 │   │   ├── PublicRoute.jsx
 │   │   └── AdminRoute.jsx
-│   │
 │   ├── App.jsx
+│   ├── index.css
 │   └── main.jsx
-│   └── index.css
+├── eslint.config.js
 ├── index.html
+├── package.json
+└── vite.config.js
+```
 
 ### Backend
 
+```text
 backend/
 ├── middleware/
 │   └── auth.js
-│
 ├── routes/
 │   ├── register.js
 │   ├── login.js
 │   ├── dashboard.js
 │   └── admin.js
-│
 ├── userStore.js
+├── package.json
 ├── server.js
 └── .env
-
+```
 
 ## Installation
 
 ### Clone the repository
 
-git clone <repository-url>
-
+```bash
+git clone https://github.com/shinymeganium/auth.git
+```
 
 ## Backend Setup
 
-Navigate to backend folder:
+Navigate to the backend folder:
 
+```bash
 cd backend
-
+```
 
 Install dependencies:
 
+```bash
 npm install
-
+```
 
 Required packages:
 
+```bash
 npm install express jsonwebtoken bcryptjs cors dotenv
-
+```
 
 Start the server:
 
+```bash
 node server.js
+```
 
 or
 
+```bash
 npm run dev
-
+```
 
 ## Frontend Setup
 
@@ -119,20 +127,19 @@ Navigate to frontend folder:
 
 cd frontend
 
-
 Install dependencies:
 
 npm install
 
-
 Required packages:
 
+```bash
 npm install axios react-router-dom
+```
 
 Start development server:
 
 npm run dev
-
 
 ## Environment Variables
 
@@ -141,8 +148,7 @@ Create a `.env` file in the backend root directory.
 ```env
 JWT_SECRET=your_secret_key_here
 PORT=3000
-
-
+```
 
 ## API Endpoints
 
@@ -150,7 +156,7 @@ PORT=3000
 
 ```http
 POST /register
-
+```
 
 Request:
 
@@ -159,7 +165,7 @@ Request:
   "email": "user@test.com",
   "password": "password123"
 }
-
+```
 
 Response:
 
@@ -167,13 +173,13 @@ Response:
 {
   "message": "User created"
 }
-
-
+```
 
 ### Login
 
 ```http
 POST /login
+```
 
 Request:
 
@@ -182,7 +188,7 @@ Request:
   "email": "user@test.com",
   "password": "password123"
 }
-
+```
 
 Response:
 
@@ -191,8 +197,7 @@ Response:
   "token": "jwt_token",
   "role": "user"
 }
-
-
+```
 
 ### Dashboard
 
@@ -200,13 +205,13 @@ Protected route.
 
 ```http
 GET /dashboard
-
+```
 
 Required header:
 
 ```http
 Authorization: Bearer <token>
-
+```
 
 Response:
 
@@ -218,9 +223,7 @@ Response:
     "role": "user"
   }
 }
-
-
-
+```
 
 ### Admin
 
@@ -228,19 +231,19 @@ Protected route.
 
 ```http
 GET /admin
-
+```
 
 Required header:
 
 ```http
 Authorization: Bearer <token>
-
+```
 
 Admin users only.
 
 Response:
 
-```json
+````json
 {
   "message": "Welcome admin"
 }
@@ -416,3 +419,4 @@ As a result:
 ## Author
 
 Created as an authentication and authorization exercise using React, Express.js, JWT, and role-based access control.
+````
