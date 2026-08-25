@@ -1,10 +1,10 @@
 import { Navigate } from "react-router";
 
 function ProtectedRoute({ children }) {
-  const isAuthenticated = localStorage.getItem("isAuthenticated");
+  const token = localStorage.getItem("token");
 
-  if (!isAuthenticated)
-    return <Navigate to="/login" replace />;
+  if (!token || token === "undefined")
+    return <Navigate to="/login" />;
 
   return children;
 }

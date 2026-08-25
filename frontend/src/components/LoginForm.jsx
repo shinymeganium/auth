@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -8,21 +9,26 @@ function LoginForm() {
 
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = JSON.parse(
-      localStorage.getItem("registeredUser")
-    );
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/login",
+        { email: form.email, password: form.password });
 
-    if (user && user.email === form.email && user.password === form.password) {
-      localStorage.setItem("isAuthenticated", "true");
-      localStorage.setItem("userEmail", form.email);
+      if (!response.data.token) {
+        setError("login failed");
+        return;
+      }
 
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("role", response.data.role);
       navigate("/me");
     }
-    else
-      setError("Invalid credentials");
+    catch (err) {
+      setError("invalid credentials");
+    }
   };
 
   return (

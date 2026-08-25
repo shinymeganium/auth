@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,10 +7,14 @@ function RegisterForm() {
 
   const [form, setForm] = useState({ email: "", password: "" });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    localStorage.setItem("registeredUser", JSON.stringify(form));
+    await axios.post(
+      "http://localhost:3000/register",
+      { email: form.email, password: form.password }
+    );
+    console.log("registered")
 
     navigate("/login");
   };
